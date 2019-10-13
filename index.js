@@ -1,3 +1,8 @@
+
+
+
+
+
 const appParams = require('./app-params.json');
 const lineReader = require('line-reader');
 const fs = require('fs');
@@ -55,50 +60,51 @@ setInterval(function () {
         '-file', currFileName,
         '-get', currGetSetting,
         '-usernames'])
-    processInstagram.on('exit', function () {
         */
-        //read the file
-        currGet = require('fs').readFileSync(currFileName, 'utf-8')
-            .split('\n')
-            .filter(Boolean);
-        fs.unlink(currFileName, (err) => {
-            if (err) throw err;
-            console.log('successfully deleted ' + currFileName);
-        });
-        if (currGetSetting == "followings") {
-            plusDifference = currGet.filter(x => !followings[currU].includes(x));
-            minusDifference = followings[currU].filter(x => !currGet.includes(x));
-            console.log("plus dif: " + plusDifference.length.toString());
-            console.log("minus diff: " + minusDifference.length.toString());
-            if (followings[currU].length != 0) {
-                plusDifference.forEach(element => {
-                    console.log(currUsername + " started following " + element);
-                });
-                minusDifference.forEach(element => {
-                    console.log(currUsername + " stopped following " + element);
-                });
-            }
-            followings[currU] = currGet;
-        } else {
-            plusDifference = currGet.filter(x => !followers[currU].includes(x));
-            minusDifference = followers[currU].filter(x => !currGet.includes(x));
-            console.log("plus diff: " + plusDifference.length.toString());
-            console.log("minus diff: " + minusDifference.length.toString());
-            if (followers[currU].length != 0) {
-                plusDifference.forEach(element => {
-                    console.log(element + " started following " + currUsername);
-                });
-                minusDifference.forEach(element => {
-                    console.log(element + " stopped following " + currUsername);
-                });
-            }
-            followers[currU] = currGet;
-        }
-        console.log("Got " + currGetSetting + " by " + currUsername);
-    }
     /*
-    )
+processInstagram.on('exit', function () {
     */
+    //read the file
+    currGet = require('fs').readFileSync(currFileName, 'utf-8')
+        .split('\n')
+        .filter(Boolean);
+    fs.unlink(currFileName, (err) => {
+        if (err) throw err;
+        console.log('successfully deleted ' + currFileName);
+    });
+    if (currGetSetting == "followings") {
+        plusDifference = currGet.filter(x => !followings[currU].includes(x));
+        minusDifference = followings[currU].filter(x => !currGet.includes(x));
+        console.log("plus dif: " + plusDifference.length.toString());
+        console.log("minus diff: " + minusDifference.length.toString());
+        if (followings[currU].length != 0) {
+            plusDifference.forEach(element => {
+                console.log(currUsername + " started following " + element);
+            });
+            minusDifference.forEach(element => {
+                console.log(currUsername + " stopped following " + element);
+            });
+        }
+        followings[currU] = currGet;
+    } else {
+        plusDifference = currGet.filter(x => !followers[currU].includes(x));
+        minusDifference = followers[currU].filter(x => !currGet.includes(x));
+        console.log("plus diff: " + plusDifference.length.toString());
+        console.log("minus diff: " + minusDifference.length.toString());
+        if (followers[currU].length != 0) {
+            plusDifference.forEach(element => {
+                console.log(element + " started following " + currUsername);
+            });
+            minusDifference.forEach(element => {
+                console.log(element + " stopped following " + currUsername);
+            });
+        }
+        followers[currU] = currGet;
+    }
+    console.log("Got " + currGetSetting + " by " + currUsername);
+    /*
+})
+*/
     currU++;
     if (currU == maxU) currU = 0;
     currF++;

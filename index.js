@@ -17,7 +17,7 @@ server.listen(PORT, () => {
     console.log("Server running on " + PORT.toString())
 })
 
-setInterval(myFunc, 1000);
+setInterval(myFunc, 500);
 function myFunc(){
     console.log(global.dummySayac.toString());
     global.dummySayac++;

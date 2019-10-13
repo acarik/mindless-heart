@@ -46,7 +46,7 @@ setInterval(function () {
     // followings
 
     console.log("Getting " + currGetSetting + " of " + currUsername + "...");
-
+/*
     var processInstagram = spawn('python', ["./instabot/examples/get_followers_or_followings_to_file.py",
         '-u', 'edirafizade',
         '-p', 'ediediedi06',
@@ -56,6 +56,7 @@ setInterval(function () {
         '-get', currGetSetting,
         '-usernames'])
     processInstagram.on('exit', function () {
+        */
         //read the file
         currGet = require('fs').readFileSync(currFileName, 'utf-8')
             .split('\n')
@@ -94,7 +95,10 @@ setInterval(function () {
             followers[currU] = currGet;
         }
         console.log("Got " + currGetSetting + " by " + currUsername);
-    })
+    }
+    /*
+    )
+    */
     currU++;
     if (currU == maxU) currU = 0;
     currF++;

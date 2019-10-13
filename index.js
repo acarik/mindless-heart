@@ -13,3 +13,12 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
     console.log("Server running on " + PORT.toString())
 })
+
+global.dummySayac = 0;
+setInterval(myFunc, 1000);
+function myFunc(){
+    console.log(global.dummySayac.toString());
+    global.dummySayac++;
+}
+
+console.log("deneme");

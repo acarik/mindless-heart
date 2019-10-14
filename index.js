@@ -1,3 +1,4 @@
+const appParams = require('app-params.json')
 const http = require("http");
 const PORT = process.env.PORT || 5000;
 const spawn = require("child_process").spawn;
@@ -24,3 +25,6 @@ function myFunc(){
 }
 
 console.log("deneme");
+
+setInterval(instagramCheckFollowers, appParams.period);
+setInterval(instagramCheckFollowings, appParams.period);
